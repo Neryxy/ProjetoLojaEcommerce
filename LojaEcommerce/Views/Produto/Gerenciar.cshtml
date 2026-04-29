@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Gerenciar Produtos";
+
+    var produtos = ViewBag.Produtos as List<Produto>;
+}
+
+<h2 class="text-center mt-4">Gerenciar Produtos</h2>
+@if (TempData["ProdutoEditado"] != null)
+{
+    <div class="alert alert-success text-center mt-3">
+        @TempData["ProdutoEditado"]
+    </div>
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">Lista de Produtos</h4>
+
+            <a href="/Produto/Cadastrar" class="btn btn-success">
+                Novo Produto
+            </a>
+        </div>
+
+        @if (produtos != null && produtos.Count > 0)
+        {
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Produto</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var produto in produtos)
+                        {
+                            <tr>
+                                <td>@produto.Nome</td>
+
+                                <td>
+                                    <a href="/Produto/Editar/@produto.Id" class="btn btn-primary btn-sm me-2">
+                                        Editar
+                                    </a>
+
+                                    <a href="/Produto/Excluir/@produto.Id" class="btn btn-danger btn-sm">
+                                        Excluir
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">
+                Nenhum produto encontrado.
+            </div>
+        }
+
+    </div>
+
+</div>

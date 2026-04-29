@@ -1,0 +1,57 @@
+﻿@model LojaEcommerce.Models.Produto
+
+@{
+    ViewData["Title"] = "Excluir Produto";
+}
+
+<h2 class="text-center mt-4 text-danger">Excluir Produto</h2>
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <div class="alert alert-warning text-center">
+            Tem certeza que deseja excluir este produto?
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Nome:</strong></label>
+            <p>@Model.Nome</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Descrição:</strong></label>
+            <p>@Model.Descricao</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Preço:</strong></label>
+            <p>@Model.Preco</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Estoque:</strong></label>
+            <p>@Model.Estoque</p>
+        </div>
+
+        <form method="post">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="d-flex justify-content-between">
+
+                <a href="/Produto/Gerenciar" class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn btn-danger">
+                    Confirmar Exclusão
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

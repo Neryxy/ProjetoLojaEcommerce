@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Painel Administrativo";
+}
+
+<h2 class="text-center mt-4">Painel Administrativo</h2>
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+
+            <div class="card shadow p-4">
+
+                <div class="text-center mb-4">
+                    <h4 class="fw-bold">Bem-vindo Administrador</h4>
+                    <p class="text-muted">Gerencie produtos, estoque e catálogo da loja.</p>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Cadastrar Produto</h5>
+                                <p class="card-text text-muted">
+                                    Adicione novos produtos ao catálogo.
+                                </p>
+                                <a href="/Produto/Cadastrar" class="btn btn-success w-100">
+                                    Cadastrar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Gerenciar Produtos</h5>
+                                <p class="card-text text-muted">
+                                    Visualize e edite produtos existentes.
+                                </p>
+                                <a href="/Produto/Gerenciar" class="btn btn-primary w-100">
+                                    Gerenciar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Controle de Estoque</h5>
+                                <p class="card-text text-muted">
+                                    Atualize quantidades e monitore estoque.
+                                </p>
+                                <a href="/Produto/Estoque" class="btn btn-warning w-100">
+                                    Estoque
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

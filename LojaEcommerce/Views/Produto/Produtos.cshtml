@@ -1,0 +1,93 @@
+﻿@using LojaEcommerce.Models
+
+@{
+    ViewData["Title"] = "Produtos";
+
+    var produtos = ViewBag.Produtos as List<Produto>;
+}
+
+<h2 class="text-center mt-4">Produtos da Loja</h2>
+
+<div class="container mt-5">
+
+    <form asp-controller="Produto" asp-action="Produtos" method="get" class="mb-4">
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+                <input type="text"
+                       name="nome"
+                       class="form-control"
+                       placeholder="Pesquisar produto..." />
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    Buscar
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <div class="row">
+
+        @if (produtos != null && produtos.Count > 0)
+        {
+            foreach (var produto in produtos)
+            {
+                <div class="col-md-4 mb-4">
+
+                    <div class="card shadow h-100">
+
+                        <img src="@produto.Imagem"
+                             class="card-img-top"
+                             style="height:250px; object-fit:cover;" />
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                @produto.Nome
+                            </h5>
+
+                            <p class="card-text">
+                                @produto.Descricao
+                            </p>
+
+                            <p class="fw-bold text-success">
+                                R$ @produto.Preco.ToString("F2")
+                            </p>
+
+                            <p class="text-muted">
+                                Estoque: @produto.Estoque
+                            </p>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <a asp-controller="Produto"
+                                   asp-action="AdicionarCarrinho"
+                                   asp-route-id="@produto.Id"
+                                   class="btn btn-success w-100">
+                                Comprar
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                    Nenhum produto encontrado.
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Cadastrar Produto";
+}
+
+<h2 class="text-center mt-4">Cadastrar Produto</h2>
+
+<div class="container mt-5" style="max-width: 700px;">
+
+    <form asp-controller="Produto" asp-action="Cadastrar" method="post" class="card shadow p-4">
+
+        <div class="mb-3">
+            <label class="form-label">Nome do Produto:</label>
+            <input type="text" name="nome" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descrição:</label>
+            <textarea name="descricao" class="form-control" rows="4" required></textarea>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Preço:</label>
+                <input type="number" step="0.01" name="preco" class="form-control" required />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Estoque:</label>
+                <input type="number" name="estoque" class="form-control" required />
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Imagem:</label>
+            <input type="text" name="imagem" class="form-control" placeholder="nome_da_imagem.jpg" required />
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+            Cadastrar Produto
+        </button>
+
+    </form>
+
+    @if (ViewBag.Mensagem != null)
+    {
+        <div class="alert alert-info mt-3 text-center">
+            @ViewBag.Mensagem
+        </div>
+    }
+
+</div>

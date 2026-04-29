@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Carrinho";
+
+    var carrinho = ViewBag.Carrinho as List<LojaEcommerce.Models.Carrinho>;
+    decimal totalGeral = 0;
+}
+
+@if (TempData["ErroEstoque"] != null)
+{
+    <div class="alert alert-warning text-center mt-3">
+        @TempData["ErroEstoque"]
+    </div>
+}
+
+<h2 class="text-center mt-4">Meu Carrinho</h2>
+
+@if (carrinho != null && carrinho.Count > 0)
+{
+    <div class="container mt-4">
+
+        @foreach (var item in carrinho)
+        {
+            decimal totalItem = item.Preco * item.Quantidade;
+            totalGeral += totalItem;
+
+            <div class="card mb-3 shadow-sm">
+                <div class="row g-0 align-items-center">
+
+                    <div class="col-md-2 text-center p-2">
+                        <img src="@item.Imagem" class="img-fluid rounded" style="max-height: 120px;" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nome</h5>
+                            <p class="card-text">@item.Descricao</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <p><strong>Quantidade:</strong></p>
+
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+
+                            <a asp-controller="Produto"
+                                   asp-action="RemoverCarrinho"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-danger btn-sm">
+                                -
+                            </a>
+
+                            <span class="fw-bold">@item.Quantidade</span>
+
+                            <a asp-controller="Produto"
+                                   asp-action="AdicionarCarrinho"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-success btn-sm">
+                                +
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <p><strong>Total:</strong></p>
+                        <p>R$ @totalItem.ToString("F2")</p>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <a asp-controller="Produto"
+                               asp-action="ApagarCarrinho"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger btn-sm">
+                            Remover
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <div class="card mt-4 p-3">
+            <h4 class="text-end">Total Geral: R$ @totalGeral.ToString("F2")</h4>
+
+            <div class="text-end mt-3">
+                <a asp-controller="Produto"
+                       asp-action="FinalizarCompra"
+                       class="btn btn-success">
+                    Finalizar Compra
+                </a>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center mt-4">
+        Seu carrinho está vazio.
+    </div>
+}
